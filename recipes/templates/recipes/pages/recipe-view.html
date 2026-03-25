@@ -1,5 +1,5 @@
 {% extends "global/base.html" %}
-        {% block tittle %}ALTERAR{% endblock tittle %}ALTERAR
+        {% block tittle %}{{recipe.tittle}} - {% endblock tittle %}
         {% block content %}
         <div class="main-content main-content-detail container">
             {% include "recipes/partials/recipe.html" %}
