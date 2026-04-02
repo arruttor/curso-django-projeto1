@@ -2,9 +2,15 @@ from django.test import TestCase
 from django.urls import reverse, resolve
 from recipes import views
 from recipes.models import Category, Recipe, User
+from .test_recipe_base import RecipeTestBase
 # Create your tests here.
 
-class RecipeViewTest(TestCase):
+
+
+class RecipeViewTest(RecipeTestBase):
+    
+    
+
     def test_recipe_home_view_function_is_correct(self):
         view = resolve(reverse('recipes:home'))
         self.assertIs(view.func,  views.home)
@@ -34,28 +40,7 @@ class RecipeViewTest(TestCase):
 
 
     def test_recipe_home_template_loads_recipes(self):
-        category = Category.objects.create(name= "category")
-        user = User.objects.create_user(
-            first_name = 'first',
-            last_name = 'name',
-            username = 'user',
-            password = '123456',
-            email = '123@gmail.com',
-        )
-        recipe = Recipe.objects.create(
-            category= category,
-            author= user,
-            tittle= 'Recipe Tittle',
-            description= 'RecipeRecipeRecipeRecipeRecipeRecipe',
-            slug= 'Recipe=slug',
-            preparation_time= 10,
-            preparation_time_unit= 'Minutos',
-            sevings= 4,
-            sevings_unit= 'Pessoas',
-            preparation_steps= 'reciperecipereciperecipereciperecipereciperecipereciperecipe',
-            preparation_steps_is_html= False,
-            is_published= True ,
-        )
+        
         response = self.client.get(reverse('recipes:home'))
         response_recipes = response.context['recipes']
         self.assertEqual(response_recipes.first().tittle, 'Recipe Tittle')
