@@ -31,6 +31,7 @@ class RecipeViewTest(RecipeTestBase):
         )
 
     def test_recipe_category_view_function_is_correct(self):
+        
         view = resolve(reverse('recipes:category', kwargs={'category_id': 1}))
         self.assertIs(view.func,  views.category)
 
@@ -40,7 +41,7 @@ class RecipeViewTest(RecipeTestBase):
 
 
     def test_recipe_home_template_loads_recipes(self):
-        
+        self.make_recipe(preparation_time=5)
         response = self.client.get(reverse('recipes:home'))
         response_recipes = response.context['recipes']
         self.assertEqual(response_recipes.first().tittle, 'Recipe Tittle')
