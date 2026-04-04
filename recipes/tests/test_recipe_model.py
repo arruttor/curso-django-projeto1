@@ -1,0 +1,14 @@
+from recipes.tests.test_recipe_base import RecipeTestBase
+from django.core.exceptions import ValidationError
+
+class RecipeModelTest(RecipeTestBase):
+    def setUp(self):
+        self.recipe = self.make_recipe()
+        return super().setUp()
+    
+
+    def test_the_test(self):
+        recipe = self.recipe.tittle = 'A' * 70
+
+        with self.assertRaises(ValidationError):
+            self.recipe.full_clean()

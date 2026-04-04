@@ -29,7 +29,7 @@ class RecipeTestBase(TestCase):
                     author_data= None,
                     tittle= 'Recipe Tittle',
                     description= 'RecipeRecipeRecipeRecipeRecipeRecipe',
-                    slug= 'Recipe=slug',
+                    slug= 'Recipe-slug',
                     preparation_time= 10,
                     preparation_time_unit= 'Minutos',
                     sevings= 4,
